@@ -869,13 +869,13 @@ sb.auth.onAuthStateChange(async (event, session) => {
   if (session?.user) {
     currentUser = session.user;
     document.getElementById('auth-screen').style.display = 'none';
-    document.getElementById('app-screen').style.display = '';
+    document.getElementById('app-screen').style.display = 'block';
     document.getElementById('user-email-display').textContent = currentUser.email;
     await loadDocs();
     await loadNotifPrefs();
   } else {
     currentUser = null;
-    document.getElementById('auth-screen').style.display = '';
+    document.getElementById('auth-screen').style.display = 'flex';
     document.getElementById('app-screen').style.display = 'none';
   }
 });
