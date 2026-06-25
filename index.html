@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Isso Vence</title>
+  <title>VenceAí — Controle de Vencimentos</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
 
   <!-- Supabase CDN -->
@@ -853,8 +853,11 @@ async function doRegister() {
     email, password: pass,
     options: { data: { full_name: name } }
   });
-  if (error) setMsg('reg-msg', error.message, 'error');
-  else setMsg('reg-msg','✅ Conta criada! Verifique seu e-mail para confirmar.','success');
+  if (error) {
+    setMsg('reg-msg', error.message, 'error');
+  } else {
+    setMsg('reg-msg','Conta criada! Se pediu confirmacao, verifique seu e-mail. Senao, clique em Entrar.','success');
+  }
 }
 
 async function doLogout() {
@@ -998,7 +1001,7 @@ async function loadNotifPrefs() {
     .from('notification_prefs')
     .select('*')
     .eq('user_id', currentUser.id)
-    .single();
+    .maybeSingle();
   if (data) {
     document.getElementById('toggle-email').checked    = data.email_enabled ?? true;
     document.getElementById('toggle-whatsapp').checked = data.whatsapp_enabled ?? false;
