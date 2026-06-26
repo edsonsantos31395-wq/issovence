@@ -17,20 +17,20 @@
     @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
 
     :root {
-      --bg:       #f8f9fc;
-      --surface:  #ffffff;
-      --surface2: #f1f4fb;
-      --border:   #dde3f0;
-      --accent:   #2563eb;
-      --accent-light: #dbeafe;
-      --accent2:  #f59e0b;
-      --danger:   #dc2626;
-      --warning:  #d97706;
-      --ok:       #16a34a;
-      --text:     #1e2533;
-      --muted:    #64748b;
+      --bg:       #0f1117;
+      --surface:  #171c27;
+      --surface2: #1e2535;
+      --border:   #2a3246;
+      --accent:   #4f8ef7;
+      --accent-light: rgba(79, 142, 247, 0.15);
+      --accent2:  #f7954f;
+      --danger:   #f74f4f;
+      --warning:  #f7c44f;
+      --ok:       #4ff78e;
+      --text:     #e8eaf0;
+      --muted:    #7b859e;
       --radius:   12px;
-      --shadow:   0 1px 4px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+      --shadow:   0 8px 32px rgba(0,0,0,.4);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,6 +41,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       line-height: 1.6;
+      min-height: 100vh;
     }
 
     a { color: var(--accent); text-decoration: none; }
@@ -53,7 +54,6 @@
       position: sticky;
       top: 0;
       z-index: 200;
-      box-shadow: 0 1px 0 var(--border);
     }
 
     .site-header-inner {
@@ -74,16 +74,6 @@
       align-items: center;
       gap: 8px;
       text-decoration: none;
-    }
-
-    .brand-tagline {
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--muted);
-      border-left: 1px solid var(--border);
-      padding-left: 12px;
-      margin-left: 4px;
     }
 
     .header-nav { display: flex; align-items: center; gap: 20px; }
@@ -108,26 +98,31 @@
     }
 
     .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { background: #1d4ed8; }
+    .btn-primary:hover { filter: brightness(1.1); }
+    .btn-primary:active { transform: scale(.98); }
     .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
     .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
     .btn-outline:hover { background: var(--accent-light); }
-    .btn-sm { padding: 7px 14px; font-size: 13px; border-radius: 7px; }
+    .btn-sm { padding: 7px 14px; font-size: 13px; border-radius: 7px; width: auto; }
     .btn-wide { width: 100%; }
+    .btn-danger { background: var(--danger); color: #fff; width: auto; padding: 8px 16px; font-size: 13px; }
 
-    #auth-screen { min-height: calc(100vh - 62px); display: none; background: var(--bg); }
+    /* SCREEN CONTROL */
     #landing-screen { display: block; }
+    #auth-screen { display: none; min-height: calc(100vh - 62px); align-items: center; justify-content: center; padding: 24px; background: radial-gradient(ellipse at 60% 10%, #1a2540 0%, #0f1117 70%); }
+    #app-screen { display: none; }
 
     .hero {
-      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #3b82f6 100%);
+      background: linear-gradient(135deg, #1e2535 0%, #0f1117 100%);
+      border-bottom: 1px solid var(--border);
       color: #fff;
       padding: 80px 24px 72px;
       text-align: center;
     }
 
     .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 54px); margin-bottom: 18px; }
-    .hero-sub { font-size: 17px; opacity: .88; max-width: 520px; margin: 0 auto 36px; }
+    .hero-sub { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto 36px; }
 
     .ad-banner { max-width: 1080px; margin: 0 auto; padding: 16px 24px; }
     .ad-slot {
@@ -142,50 +137,129 @@
       height: 90px;
     }
 
-    .content-wrap { max-width: 1080px; margin: 0 auto; padding: 40px 24px; }
-    .content-with-sidebar { display: grid; grid-template-columns: 1fr 320px; gap: 32px; }
-
-    .features-section { padding: 64px 24px; background: var(--surface); border-top: 1px solid var(--border); }
+    .features-section { padding: 64px 24px; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
     .feature-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; }
-    .feature-title { font-weight: 700; margin-bottom: 8px; }
+    .feature-title { font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .feature-card p { color: var(--muted); font-size: 14px; }
 
-    .how-section { padding: 64px 24px; background: var(--bg); }
-    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
-    .step-card { text-align: center; }
-    .step-num { width: 44px; height: 44px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-weight: bold; }
+    /* AUTH BOX */
+    .auth-box { background: var(--surface); border: 1px solid var(--border); padding: 48px 40px; border-radius: 20px; width: 100%; max-width: 420px; text-align: center; box-shadow: var(--shadow); }
+    .auth-logo { font-size: 48px; margin-bottom: 12px; }
+    .auth-title { font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 6px; }
+    .auth-sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+    .tab-row { display: flex; background: var(--bg); border-radius: 8px; padding: 4px; margin-bottom: 28px; gap: 4px; }
+    .tab-btn { flex: 1; padding: 9px; border: none; background: transparent; color: var(--muted); border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; transition: all .2s; }
+    .tab-btn.active { background: var(--accent); color: #fff; }
 
-    #app-screen { display: none; }
-    .app-layout { max-width: 1080px; margin: 0 auto; padding: 32px 24px; }
+    label { display: block; text-align: left; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    input[type=text], input[type=email], input[type=password], input[type=date], select {
+      width: 100%; padding: 12px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: border-color .2s; margin-bottom: 16px;
+    }
+    input:focus, select:focus { border-color: var(--accent); }
+    select option { background: var(--surface2); }
 
-    .auth-inline-screen { display: none; padding: 48px 24px; justify-content: center; }
-    .auth-inline-screen.show { display: flex; }
-    .auth-box { background: var(--surface); border: 1px solid var(--border); padding: 36px 32px; border-radius: 16px; width: 100%; max-width: 400px; box-shadow: var(--shadow); }
+    .msg { font-size: 13px; padding: 10px; border-radius: 8px; margin-top: 12px; }
+    .msg.error { background: rgba(247,79,79,.15); color: #f87171; border: 1px solid rgba(247,79,79,.3); }
+    .msg.success { background: rgba(79,247,142,.1); color: #4ade80; border: 1px solid rgba(79,247,142,.3); }
+
+    /* APP LAYOUT */
+    .main { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+    .stat-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+    .stat-value { font-size: 28px; font-weight: 700; }
+    .stat-value.danger { color: var(--danger); }
+    .stat-value.warning { color: var(--warning); }
+    .stat-value.ok { color: var(--ok); }
+
+    .add-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 28px; }
+    .add-card-title { font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 18px; }
+    .form-row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+    .form-row .field { flex: 1; min-width: 140px; }
+    .form-row input, .form-row select { margin-bottom: 0; }
+    .btn-add { background: var(--accent); color: #fff; border: none; padding: 12px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: 'Inter', sans-serif; transition: filter .2s; height: 46px; }
+    .btn-add:hover { filter: brightness(1.12); }
+
+    /* DOC LIST */
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: 22px; }
+    .filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .filter-btn { padding: 7px 14px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 13px; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
+    .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    
+    .doc-list { display: flex; flex-direction: column; gap: 8px; }
+    .doc-item { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; gap: 16px; transition: border-color .2s; }
+    .doc-item:hover { border-color: var(--accent); }
+    .doc-item.expired { border-left: 3px solid var(--danger); }
+    .doc-item.urgent  { border-left: 3px solid var(--warning); }
+    .doc-item.normal  { border-left: 3px solid var(--ok); }
+    .doc-icon { font-size: 26px; width: 40px; text-align: center; flex-shrink: 0; }
+    .doc-info { flex: 1; min-width: 0; }
+    .doc-name { font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .doc-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .doc-date { text-align: right; min-width: 120px; }
+    .doc-date-label { font-size: 12px; color: var(--muted); }
+    .doc-date-value { font-weight: 600; font-size: 14px; }
+    
+    .badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+    .badge.expired { background: rgba(247,79,79,.15); color: #f87171; }
+    .badge.urgent  { background: rgba(247,196,79,.15); color: #fbbf24; }
+    .badge.soon    { background: rgba(79,142,247,.15); color: #60a5fa; }
+    .badge.ok      { background: rgba(79,247,142,.1); color: #4ade80; }
+    .btn-icon { background: transparent; border: 1px solid var(--border); color: var(--muted); width: 34px; height: 34px; border-radius: 7px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: all .2s; }
+    .btn-icon:hover { border-color: var(--danger); color: var(--danger); }
+    .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+    .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+
+    /* NOTIFICATIONS */
+    .notif-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-top: 32px; }
+    .notif-title { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .notif-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .notif-row:last-child { border-bottom: none; }
+    .notif-row .label { flex: 1; font-size: 14px; }
+    .notif-row .sub { font-size: 12px; color: var(--muted); }
+    .toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 24px; cursor: pointer; transition: .3s; }
+    .toggle-slider:before { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .3s; }
+    .toggle input:checked + .toggle-slider { background: var(--accent); }
+    .toggle input:checked + .toggle-slider:before { transform: translateX(20px); }
+
+    /* MODAL & TOAST */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; width: 100%; max-width: 480px; }
+    .modal-title { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 20px; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+    #toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; }
+    .toast { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 18px; font-size: 14px; min-width: 220px; animation: slideIn .25s ease; box-shadow: var(--shadow); }
+    .toast.success { border-left: 3px solid var(--ok); }
+    .toast.error   { border-left: 3px solid var(--danger); }
 
     .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 40px 24px 24px; margin-top: 40px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; max-width: 1080px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; max-width: 1080px; margin: 0 auto; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .footer-links a { font-size: 13px; color: var(--muted); }
 
-    @media (max-width: 768px) {
-      .features-grid, .steps-grid, .footer-grid { grid-template-columns: 1fr; }
-      .header-nav { display: none; }
-    }
+    @keyframes slideIn { from { opacity:0; transform: translateX(20px); } to { opacity:1; transform: none; } }
+    @media (max-width: 768px) { .stats-row { grid-template-columns: 1fr 1fr; } .form-grid, .footer-grid { grid-template-columns: 1fr; } .header-nav { display: none; } .form-row .field { min-width: 100%; } }
   </style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="site-header-inner">
-    <a href="index.html" class="brand">⏳ Expiro</a>
-    <nav class="header-nav">
-      <a href="index.html#como-funciona">Como funciona</a>
+    <a href="index.html" class="brand" onclick="goHome(event)">⏳ Expiro</a>
+    <nav class="header-nav" id="public-nav">
       <a href="blog.html">Blog</a>
       <a href="sobre.html">Sobre</a>
     </nav>
-    <div class="header-right" id="header-right">
-      <button class="btn btn-outline btn-sm" onclick="showAuth('login')">Entrar</button>
-      <button class="btn btn-primary btn-sm" onclick="showAuth('register')">Criar conta grátis</button>
+    <div class="header-right" id="header-auth-buttons">
+      <span class="user-email" id="user-email-display"></span>
+      <button class="btn btn-outline btn-sm" id="btn-nav-login" onclick="showAuthScreen('login')">Entrar</button>
+      <button class="btn btn-primary btn-sm" id="btn-nav-register" onclick="showAuthScreen('register')">Criar conta</button>
+      <button class="btn btn-ghost btn-sm" id="btn-nav-logout" style="display:none;" onclick="doLogout()">Sair</button>
     </div>
   </div>
 </header>
@@ -194,43 +268,393 @@
   <section class="hero">
     <h1>Nunca mais perca um vencimento importante</h1>
     <p class="hero-sub">Controle CNH, passaporte, seguros e planos com alertas automáticos por e-mail antes do prazo acabar.</p>
-    <button class="btn btn-primary" onclick="showAuth('register')" style="background:#fff;color:#1e3a8a;">Começar de graça</button>
+    <button class="btn btn-primary" onclick="showAuthScreen('register')">Começar de graça</button>
   </section>
 
   <div class="ad-banner">
     <div class="ad-slot">Espaço para o Google AdSense</div>
   </div>
 
-  <section class="features-section" id="funcionalidades">
+  <section class="features-section">
     <div class="features-grid">
-      <div class="feature-card"><h3>📅 Painel Visual</h3><p>Controle centralizado e organizado por cores.</p></div>
-      <div class="feature-card"><h3>🔔 Alertas Automáticos</h3><p>E-mails automáticos antes do vencimento do documento.</p></div>
-      <div class="feature-card"><h3>🔒 Segurança Total</h3><p>Seus dados guardados de forma criptografada.</p></div>
+      <div class="feature-card"><div class="feature-title">📅 Painel Visual</div><p>Controle centralizado e organizado por cores de urgência.</p></div>
+      <div class="feature-card"><div class="feature-title">🔔 Alertas Automáticos</div><p>E-mails automáticos antes do vencimento do seu documento.</p></div>
+      <div class="feature-card"><div class="feature-title">🔒 Segurança Total</div><p>Seus dados guardados de forma criptografada no banco.</p></div>
     </div>
   </section>
 </div>
 
-<div class="auth-inline-screen" id="auth-screen">
+<div id="auth-screen">
   <div class="auth-box">
-    <h3>Entrar no Expiro</h3><br>
-    <label>E-mail</label><input type="email" id="login-email" />
-    <label>Senha</label><input type="password" id="login-password" /><br><br>
-    <button class="btn btn-primary btn-wide" onclick="alert('Conectando ao banco...')">Entrar</button>
+    <div class="auth-logo">⏳</div>
+    <h1 class="auth-title">Expiro</h1>
+    <p class="auth-sub">Acesse o seu gerenciador de validades</p>
+
+    <div class="tab-row">
+      <button class="tab-btn active" id="tab-login-btn" onclick="switchTab('login')">Entrar</button>
+      <button class="tab-btn" id="tab-register-btn" onclick="switchTab('register')">Cadastrar</button>
+    </div>
+
+    <div id="tab-login">
+      <label>E-mail</label>
+      <input type="email" id="login-email" placeholder="seu@email.com" />
+      <label>Senha</label>
+      <input type="password" id="login-password" placeholder="••••••••" />
+      <button class="btn btn-primary btn-wide" onclick="doLogin()">Entrar</button>
+      <div id="login-msg"></div>
+    </div>
+
+    <div id="tab-register" style="display:none">
+      <label>Nome</label>
+      <input type="text" id="reg-name" placeholder="Seu nome" />
+      <label>E-mail</label>
+      <input type="email" id="reg-email" placeholder="seu@email.com" />
+      <label>Senha</label>
+      <input type="password" id="reg-password" placeholder="mín. 6 caracteres" />
+      <button class="btn btn-primary btn-wide" onclick="doRegister()">Criar conta</button>
+      <div id="reg-msg"></div>
+    </div>
+  </div>
+</div>
+
+<div id="app-screen">
+  <div class="main">
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Vencidos</div><div class="stat-value danger" id="stat-expired">0</div></div>
+      <div class="stat-card"><div class="stat-label">Vence em 7 dias</div><div class="stat-value warning" id="stat-urgent">0</div></div>
+      <div class="stat-card"><div class="stat-label">Vence em 30 dias</div><div class="stat-value" style="color:var(--accent)" id="stat-soon">0</div></div>
+      <div class="stat-card"><div class="stat-label">Em dia</div><div class="stat-value ok" id="stat-ok">0</div></div>
+    </div>
+
+    <div class="add-card">
+      <div class="add-card-title">➕ Adicionar documento</div>
+      <div class="form-row">
+        <div class="field">
+          <label>Nome do documento</label>
+          <input type="text" id="doc-name" placeholder="Ex: CNH, Passaporte..." />
+        </div>
+        <div class="field">
+          <label>Categoria</label>
+          <select id="doc-category">
+            <option value="pessoal">🪪 Pessoal</option>
+            <option value="veiculo">🚗 Veículo</option>
+            <option value="saude">🏥 Saúde</option>
+            <option value="financeiro">💳 Financeiro</option>
+            <option value="imovel">🏠 Imóvel</option>
+            <option value="empresa">🏢 Empresa</option>
+            <option value="outros">📄 Outros</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Data de vencimento</label>
+          <input type="date" id="doc-date" />
+        </div>
+        <div class="field">
+          <label>Observação (opcional)</label>
+          <input type="text" id="doc-obs" placeholder="Notas adicionais..." />
+        </div>
+        <button class="btn-add" onclick="addDocument()">Adicionar</button>
+      </div>
+    </div>
+
+    <div class="section-header"><h2 class="section-title">Meus Documentos</h2></div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="setFilter('todos', this)">Todos</button>
+      <button class="filter-btn" onclick="setFilter('expired', this)">🔴 Vencidos</button>
+      <button class="filter-btn" onclick="setFilter('urgent', this)">🟡 Urgentes (7d)</button>
+      <button class="filter-btn" onclick="setFilter('soon', this)">🔵 Em breve (30d)</button>
+      <button class="filter-btn" onclick="setFilter('ok', this)">🟢 Em dia</button>
+    </div>
+
+    <div class="doc-list" id="doc-list">
+      <div class="empty-state"><div class="icon">📂</div><p>Carregando seus documentos...</p></div>
+    </div>
+
+    <div class="notif-card">
+      <div class="notif-title">🔔 Configuração de Alertas</div>
+      <div class="notif-row">
+        <div>
+          <div class="label">📧 Alertas por e-mail</div>
+          <div class="sub">Receba avisos automáticos antes do prazo final acabar</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-email" checked onchange="saveNotifPrefs()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="notif-row">
+        <div>
+          <div class="label">📱 Notificação por WhatsApp</div>
+          <div class="sub">Receba notificações diretamente em seu celular</div>
+        </div>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-whatsapp" onchange="saveNotifPrefs()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div id="whatsapp-field" style="display:none; margin-top:12px;">
+        <label>Número WhatsApp (com DDI, ex: 5544999999999)</label>
+        <input type="text" id="whatsapp-number" placeholder="5544999999999" oninput="saveNotifPrefs()" />
+      </div>
+    </div>
   </div>
 </div>
 
 <footer class="site-footer">
   <div class="footer-grid">
-    <div><h3>⏳ Expiro</h3><p>Gerenciador inteligente de validades.</p></div>
+    <div><h3>⏳ Expiro</h3><p>Gerenciador inteligente de prazos e validades.</p></div>
     <div><h4>Recursos</h4><ul class="footer-links"><li><a href="faq.html">FAQ</a></li><li><a href="contato.html">Contato</a></li></ul></div>
     <div><h4>Legal</h4><ul class="footer-links"><li><a href="privacidade.html">Privacidade</a></li><li><a href="termos.html">Termos</a></li><li><a href="cookies.html">Cookies</a></li></ul></div>
   </div>
 </footer>
 
+<div class="modal-overlay" id="modal-delete">
+  <div class="modal">
+    <div class="modal-title">🗑️ Excluir documento?</div>
+    <p style="color:var(--muted); font-size:14px;">Essa ação removerá permanentemente o documento do banco e desativará os e-mails.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-danger" onclick="confirmDelete()">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
 <script>
-function showAuth(tab) {
+const SUPABASE_URL = 'https://ejadqkttzxaddcoykhbj.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqYWRxa3R0enhhZGRjb3lraGJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5MjUzMDYsImV4cCI6MjA5NzUwMTMwNn0.baycbUFtFPWPuZdgnaOWmrhBmDGuwy0xS0IZXLjVp_M';
+
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let currentUser = null;
+let allDocs = [];
+let currentFilter = 'todos';
+let deleteTarget = null;
+
+function toast(msg, type = 'success') {
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+function setMsg(id, text, type) {
+  const el = document.getElementById(id);
+  el.innerHTML = text ? `<div class="msg ${type}">${text}</div>` : '';
+}
+
+function daysUntil(dateStr) {
+  const now = new Date(); now.setHours(0,0,0,0);
+  const d = new Date(dateStr + 'T00:00:00');
+  return Math.round((d - now) / 86400000);
+}
+
+function statusOf(days) {
+  if (days < 0)   return 'expired';
+  if (days <= 7)  return 'urgent';
+  if (days <= 30) return 'soon';
+  return 'ok';
+}
+
+function badgeFor(days) {
+  if (days < 0)   return `<span class="badge expired">Vencido há ${Math.abs(days)}d</span>`;
+  if (days === 0) return `<span class="badge expired">Vence hoje!</span>`;
+  if (days <= 7)  return `<span class="badge urgent">Vence em ${days}d</span>`;
+  if (days <= 30) return `<span class="badge soon">Em ${days} dias</span>`;
+  return `<span class="badge ok">Em dia</span>`;
+}
+
+const catIcons = { pessoal:'🪪', veiculo:'🚗', saude:'🏥', financeiro:'💳', imovel:'🏠', empresa:'🏢', outros:'📄' };
+
+function fmtDate(str) {
+  if (!str) return '';
+  const [y,m,d] = str.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+function goHome(e) {
+  if(!currentUser) {
+    e.preventDefault();
+    document.getElementById('landing-screen').style.display = 'block';
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('app-screen').style.display = 'none';
+  }
+}
+
+function showAuthScreen(tab) {
   document.getElementById('landing-screen').style.display = 'none';
-  document.getElementById('auth-screen').classList.add('show');
+  document.getElementById('app-screen').style.display = 'none';
+  document.getElementById('auth-screen').style.display = 'flex';
+  switchTab(tab);
+}
+
+function switchTab(tab) {
+  document.getElementById('tab-login-btn').classList.toggle('active', tab === 'login');
+  document.getElementById('tab-register-btn').classList.toggle('active', tab === 'register');
+  document.getElementById('tab-login').style.display   = tab === 'login' ? '' : 'none';
+  document.getElementById('tab-register').style.display = tab === 'register' ? '' : 'none';
+}
+
+async function doLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass  = document.getElementById('login-password').value;
+  if (!email || !pass) return setMsg('login-msg','Preencha todos os campos.','error');
+  setMsg('login-msg','⟳ Entrando...','');
+  const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+  if (error) setMsg('login-msg', error.message, 'error');
+}
+
+async function doRegister() {
+  const name  = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const pass  = document.getElementById('reg-password').value;
+  if (!name||!email||!pass) return setMsg('reg-msg','Preencha todos os campos.','error');
+  if (pass.length < 6) return setMsg('reg-msg','Senha deve ter ao menos 6 caracteres.','error');
+  setMsg('reg-msg','⟳ Criando conta...','');
+  const { error } = await sb.auth.signUp({ email, password: pass, options: { data: { full_name: name } } });
+  if (error) setMsg('reg-msg', error.message, 'error');
+  else setMsg('reg-msg','Conta criada com sucesso! Faça seu login.','success');
+}
+
+async function doLogout() { await sb.auth.signOut(); }
+
+sb.auth.onAuthStateChange(async (event, session) => {
+  if (session?.user) {
+    currentUser = session.user;
+    document.getElementById('landing-screen').style.display = 'none';
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('app-screen').style.display = 'block';
+    
+    document.getElementById('user-email-display').textContent = currentUser.email;
+    document.getElementById('btn-nav-login').style.display = 'none';
+    document.getElementById('btn-nav-register').style.display = 'none';
+    document.getElementById('btn-nav-logout').style.display = '';
+    
+    await loadDocs();
+    await loadNotifPrefs();
+  } else {
+    currentUser = null;
+    document.getElementById('landing-screen').style.display = 'block';
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('app-screen').style.display = 'none';
+    
+    document.getElementById('user-email-display').textContent = '';
+    document.getElementById('btn-nav-login').style.display = '';
+    document.getElementById('btn-nav-register').style.display = '';
+    document.getElementById('btn-nav-logout').style.display = 'none';
+  }
+});
+
+async function loadDocs() {
+  const { data, error } = await sb.from('documents').select('*').eq('user_id', currentUser.id).order('due_date', { ascending: true });
+  if (error) { toast('Erro ao carregar documentos.', 'error'); return; }
+  allDocs = data || [];
+  renderDocs();
+  updateStats();
+}
+
+function renderDocs() {
+  const list = document.getElementById('doc-list');
+  let docs = allDocs;
+  if (currentFilter !== 'todos') docs = docs.filter(d => statusOf(daysUntil(d.due_date)) === currentFilter);
+
+  if (!docs.length) {
+    list.innerHTML = `<div class="empty-state"><div class="icon">🔍</div><p>Nenhum documento encontrado.</p></div>`;
+    return;
+  }
+
+  list.innerHTML = docs.map(d => {
+    const days = daysUntil(d.due_date);
+    const status = statusOf(days);
+    return `<div class="doc-item ${status}">
+      <div class="doc-icon">${catIcons[d.category] || '📄'}</div>
+      <div class="doc-info">
+        <div class="doc-name">${d.name}</div>
+        <div class="doc-meta">${d.category ? d.category.toUpperCase() : ''} ${d.notes ? '· '+d.notes : ''}</div>
+      </div>
+      <div class="doc-date"><div class="doc-date-label">Vencimento</div><div class="doc-date-value">${fmtDate(d.due_date)}</div></div>
+      ${badgeFor(days)}
+      <div class="doc-actions"><button class="btn-icon" onclick="openDelete('${d.id}')">🗑️</button></div>
+    </div>`;
+  }).join('');
+}
+
+function updateStats() {
+  let expired=0, urgent=0, soon=0, ok=0;
+  allDocs.forEach(d => {
+    const s = statusOf(daysUntil(d.due_date));
+    if (s==='expired') expired++;
+    else if (s==='urgent') urgent++;
+    else if (s==='soon') soon++;
+    else ok++;
+  });
+  document.getElementById('stat-expired').textContent = expired;
+  document.getElementById('stat-urgent').textContent  = urgent;
+  document.getElementById('stat-soon').textContent    = soon;
+  document.getElementById('stat-ok').textContent      = ok;
+}
+
+async function addDocument() {
+  const name     = document.getElementById('doc-name').value.trim();
+  const category = document.getElementById('doc-category').value;
+  const dueDate  = document.getElementById('doc-date').value;
+  const notes    = document.getElementById('doc-obs').value.trim();
+
+  if (!name || !dueDate) { toast('Preencha nome e data de vencimento.', 'error'); return; }
+  const { error } = await sb.from('documents').insert([{ user_id: currentUser.id, name, category, due_date: dueDate, notes }]);
+  if (error) { toast('Erro ao salvar.', 'error'); return; }
+
+  document.getElementById('doc-name').value = '';
+  document.getElementById('doc-date').value = '';
+  document.getElementById('doc-obs').value  = '';
+  toast('✅ Documento adicionado!');
+  await loadDocs();
+}
+
+function setFilter(f, el) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderDocs();
+}
+
+function openDelete(id) { deleteTarget = id; document.getElementById('modal-delete').classList.add('open'); }
+function closeModal() { deleteTarget = null; document.getElementById('modal-delete').classList.remove('open'); }
+
+async function confirmDelete() {
+  if (!deleteTarget) return;
+  const { error } = await sb.from('documents').delete().eq('id', deleteTarget);
+  closeModal();
+  if (error) { toast('Erro ao excluir.', 'error'); return; }
+  toast('Documento removido.');
+  await loadDocs();
+}
+
+async function loadNotifPrefs() {
+  const { data } = await sb.from('notification_prefs').select('*').eq('user_id', currentUser.id).maybeSingle();
+  if (data) {
+    document.getElementById('toggle-email').checked    = data.email_enabled ?? true;
+    document.getElementById('toggle-whatsapp').checked = data.whatsapp_enabled ?? false;
+    document.getElementById('whatsapp-number').value   = data.whatsapp_number || '';
+    document.getElementById('whatsapp-field').style.display = data.whatsapp_enabled ? '' : 'none';
+  }
+  document.getElementById('toggle-whatsapp').onchange = function() {
+    document.getElementById('whatsapp-field').style.display = this.checked ? '' : 'none';
+    saveNotifPrefs();
+  };
+}
+
+async function saveNotifPrefs() {
+  const payload = {
+    user_id:          currentUser.id,
+    email_enabled:    document.getElementById('toggle-email').checked,
+    whatsapp_enabled: document.getElementById('toggle-whatsapp').checked,
+    whatsapp_number:  document.getElementById('whatsapp-number').value.trim(),
+  };
+  await sb.from('notification_prefs').upsert(payload, { onConflict: 'user_id' });
 }
 </script>
 </body>
